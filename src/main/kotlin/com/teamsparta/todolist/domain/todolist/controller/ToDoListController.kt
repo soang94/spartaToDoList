@@ -1,7 +1,7 @@
 package com.teamsparta.todolist.domain.todolist.controller
 
 import com.teamsparta.todolist.domain.card.service.CardService
-import com.teamsparta.todolist.domain.todolist.dto.AddToDoListRequest
+import com.teamsparta.todolist.domain.todolist.dto.CreateToDoListRequest
 import com.teamsparta.todolist.domain.todolist.dto.ToDoListResponse
 import com.teamsparta.todolist.domain.todolist.dto.UpdateToDoListRequest
 import org.springframework.http.HttpStatus
@@ -42,13 +42,13 @@ class ToDoListController(
 
     // todolist 생성
     @PostMapping
-    fun addToDoList(
+    fun createToDoList(
         @PathVariable cardId: Long,
-        @RequestBody addToDoListRequest: AddToDoListRequest
+        @RequestBody createToDoListRequest: CreateToDoListRequest
     ): ResponseEntity<ToDoListResponse> {
         return ResponseEntity
             .status(HttpStatus.CREATED)
-            .body(cardService.addToDoList(cardId, addToDoListRequest))
+            .body(cardService.createToDoList(cardId, createToDoListRequest))
     }
 
     // todolist 수정

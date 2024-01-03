@@ -3,7 +3,7 @@ package com.teamsparta.todolist.domain.card.service
 import com.teamsparta.todolist.domain.card.dto.CardResponse
 import com.teamsparta.todolist.domain.card.dto.CreateCardRequest
 import com.teamsparta.todolist.domain.card.dto.UpdateCardRequest
-import com.teamsparta.todolist.domain.todolist.dto.AddToDoListRequest
+import com.teamsparta.todolist.domain.todolist.dto.CreateToDoListRequest
 import com.teamsparta.todolist.domain.todolist.dto.ToDoListResponse
 import com.teamsparta.todolist.domain.todolist.dto.UpdateToDoListRequest
 
@@ -22,7 +22,7 @@ interface CardService {
 
     fun getToDoList(cardId: Long, todolistId: Long): ToDoListResponse
 
-    fun addToDoList(cardId: Long, request: AddToDoListRequest): ToDoListResponse
+    fun createToDoList(cardId: Long, request: CreateToDoListRequest): ToDoListResponse
 
     fun updateToDoList(cardId: Long, todolistId: Long, request:UpdateToDoListRequest): ToDoListResponse
 

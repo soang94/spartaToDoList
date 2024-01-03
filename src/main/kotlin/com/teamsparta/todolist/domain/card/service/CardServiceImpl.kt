@@ -7,7 +7,7 @@ import com.teamsparta.todolist.domain.card.model.Card
 import com.teamsparta.todolist.domain.card.model.toResponse
 import com.teamsparta.todolist.domain.card.repository.CardRepository
 import com.teamsparta.todolist.domain.exception.ModelNotFoundException
-import com.teamsparta.todolist.domain.todolist.dto.AddToDoListRequest
+import com.teamsparta.todolist.domain.todolist.dto.CreateToDoListRequest
 import com.teamsparta.todolist.domain.todolist.dto.ToDoListResponse
 import com.teamsparta.todolist.domain.todolist.dto.UpdateToDoListRequest
 import com.teamsparta.todolist.domain.todolist.model.ToDoList
@@ -67,7 +67,7 @@ class CardServiceImpl(
     }
 
     @Transactional
-    override fun addToDoList(cardId: Long, request: AddToDoListRequest): ToDoListResponse {
+    override fun createToDoList(cardId: Long, request: CreateToDoListRequest): ToDoListResponse {
         val card = cardRepository.findByIdOrNull(cardId) ?: throw ModelNotFoundException("Card", cardId)
 
         val toDoList = ToDoList(
@@ -78,7 +78,7 @@ class CardServiceImpl(
             card = card
         )
 
-        card.addToDoList(toDoList)
+        card.createToDoList(toDoList)
         cardRepository.save(card)
 
         return toDoList.toResponse()

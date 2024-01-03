@@ -17,7 +17,7 @@ class Card(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
 
-    fun addToDoList(toDoList: ToDoList) {
+    fun createToDoList(toDoList: ToDoList) {
         todoList.add(toDoList)
     }
 
