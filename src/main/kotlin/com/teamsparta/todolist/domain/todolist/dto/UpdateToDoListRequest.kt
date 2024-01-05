@@ -4,4 +4,5 @@ data class UpdateToDoListRequest(
     val title: String,
     val description: String?,
     val userName: String,
+    val complete: Boolean,
 )

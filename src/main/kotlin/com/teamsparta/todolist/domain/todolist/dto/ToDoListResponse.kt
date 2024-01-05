@@ -8,4 +8,5 @@ data class ToDoListResponse(
     val description: String?,
     val creationDate: LocalDate,
     val userName: String,
+    val complete: Boolean,
 )

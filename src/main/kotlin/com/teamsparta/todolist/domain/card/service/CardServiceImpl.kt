@@ -97,6 +97,15 @@ class CardServiceImpl(
     }
 
     @Transactional
+    override fun updateCompleteToDoList(todolistId: Long) {
+        val completeToDoList = toDoListRepository.findByIdOrNull(todolistId) ?: throw ModelNotFoundException("ToDoList", todolistId)
+
+        completeToDoList.complete()
+        toDoListRepository.save(completeToDoList)
+
+    }
+
+    @Transactional
     override fun removeToDoList(cardId: Long, todolistId: Long) {
         val card = cardRepository.findByIdOrNull(cardId) ?: throw ModelNotFoundException("Card", cardId)
         val toDoList = toDoListRepository.findByIdOrNull(todolistId) ?: throw ModelNotFoundException("ToDoList", todolistId)

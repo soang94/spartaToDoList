@@ -39,6 +39,16 @@ class ToDoList(
     fun removeComments(comments: Comments) {
         comment.remove(comments)
     }
+
+    @Column(name = "complete")
+    private var _complete: Boolean = false
+
+    val complete: Boolean
+        get() = _complete
+
+    fun complete() {
+        _complete = true
+    }
 }
 
 fun ToDoList.toResponse(): ToDoListResponse {
@@ -48,5 +58,7 @@ fun ToDoList.toResponse(): ToDoListResponse {
         description = description,
         creationDate = creationDate,
         userName = userName,
+        complete = false,
     )
+
 }

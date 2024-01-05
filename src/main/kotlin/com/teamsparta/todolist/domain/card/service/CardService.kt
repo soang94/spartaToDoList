@@ -26,5 +26,8 @@ interface CardService {
 
     fun updateToDoList(cardId: Long, todolistId: Long, request:UpdateToDoListRequest): ToDoListResponse
 
+    fun updateCompleteToDoList(todolistId: Long)
+
     fun removeToDoList(cardId: Long, todolistId: Long)
+
 }
