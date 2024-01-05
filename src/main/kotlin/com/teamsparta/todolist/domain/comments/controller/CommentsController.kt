@@ -4,6 +4,7 @@ import com.teamsparta.todolist.domain.comments.dto.CommentsResponse
 import com.teamsparta.todolist.domain.comments.dto.CreateCommentsRequest
 import com.teamsparta.todolist.domain.comments.dto.UpdateCommentsRequest
 import com.teamsparta.todolist.domain.todolist.service.ToDoListService
+import io.swagger.v3.oas.annotations.Operation
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*
 class CommentsController(
     private val toDoListService: ToDoListService
 ) {
-    //댓글 전체 리스트
+    @Operation(summary = "댓글 전체 조회")
     @GetMapping
     fun getCommentsList(@PathVariable todolistId: Long): ResponseEntity<List<CommentsResponse>> {
         return ResponseEntity
@@ -21,7 +22,7 @@ class CommentsController(
             .body(toDoListService.getCommentsList(todolistId))
     }
 
-    //댓글 단건 조회
+    @Operation(summary = "댓글 단건 조회")
     @GetMapping("/{commentsId}")
     fun getComments(
         @PathVariable todolistId: Long,
@@ -32,7 +33,7 @@ class CommentsController(
             .body(toDoListService.getComments(todolistId, commentsId))
     }
 
-    //댓글 생성
+    @Operation(summary = "댓글 추가")
     @PostMapping
     fun createComments(
         @PathVariable todolistId: Long,
@@ -44,7 +45,7 @@ class CommentsController(
 
     }
 
-    //댓글 수정
+    @Operation(summary = "댓글 수정")
     @PutMapping("/{commentsId}")
     fun updateComments(
         @PathVariable todolistId: Long,
@@ -56,7 +57,7 @@ class CommentsController(
             .body(toDoListService.updateComments(todolistId, commentsId, updateCommentsRequest))
     }
 
-    //댓글 전체 삭제
+    @Operation(summary = "댓글 전체 삭제")
     @DeleteMapping
     fun removeCommentsList(@PathVariable todolistId: Long): ResponseEntity<Unit> {
         toDoListService.removeCommentsList(todolistId)
@@ -65,7 +66,7 @@ class CommentsController(
             .build()
     }
 
-    //댓글 삭제
+    @Operation(summary = "댓글 삭제")
     @DeleteMapping("/{commentsId}")
     fun removeComments(
         @PathVariable todolistId: Long,

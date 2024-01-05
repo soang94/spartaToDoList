@@ -4,6 +4,7 @@ import com.teamsparta.todolist.domain.card.service.CardService
 import com.teamsparta.todolist.domain.todolist.dto.CreateToDoListRequest
 import com.teamsparta.todolist.domain.todolist.dto.ToDoListResponse
 import com.teamsparta.todolist.domain.todolist.dto.UpdateToDoListRequest
+import io.swagger.v3.oas.annotations.Operation
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
@@ -21,7 +22,7 @@ class ToDoListController(
     private val cardService: CardService
 ) {
 
-    // todolist 전체 목록 조회
+    @Operation(summary = "todolist 전체 조회")
     @GetMapping
     fun getToDoListList(@PathVariable cardId: Long): ResponseEntity<List<ToDoListResponse>> {
         return ResponseEntity
@@ -29,7 +30,7 @@ class ToDoListController(
             .body(cardService.getToDoListList(cardId))
     }
 
-    // todolist 단건 조회
+    @Operation(summary = "todolist 단건 조회")
     @GetMapping("/{todolistId}")
     fun getToDoList(
         @PathVariable cardId: Long,
@@ -40,7 +41,7 @@ class ToDoListController(
             .body(cardService.getToDoList(cardId, todolistId))
     }
 
-    // todolist 생성
+    @Operation(summary = "todolist 생성")
     @PostMapping
     fun createToDoList(
         @PathVariable cardId: Long,
@@ -51,7 +52,7 @@ class ToDoListController(
             .body(cardService.createToDoList(cardId, createToDoListRequest))
     }
 
-    // todolist 수정
+    @Operation(summary = "todolist 수정")
     @PutMapping("/{todolistId}")
     fun updateToDoList(
         @PathVariable cardId: Long,
@@ -63,7 +64,7 @@ class ToDoListController(
             .body(cardService.updateToDoList(cardId, todolistId, updateToDoListRequest))
     }
 
-    // todolist 삭제
+    @Operation(summary = "todolist 삭제")
     @DeleteMapping("/{todolistId}")
     fun removeToDoList(
         @PathVariable cardId: Long,
