@@ -36,7 +36,6 @@ class CommentsController(
     @PostMapping
     fun createComments(
         @PathVariable todolistId: Long,
-        commentsId: Long,
         @RequestBody createCommentsRequest: CreateCommentsRequest
     ): ResponseEntity<CommentsResponse> {
         return ResponseEntity
@@ -55,6 +54,15 @@ class CommentsController(
         return ResponseEntity
             .status(HttpStatus.OK)
             .body(toDoListService.updateComments(todolistId, commentsId, updateCommentsRequest))
+    }
+
+    //댓글 전체 삭제
+    @DeleteMapping
+    fun removeCommentsList(@PathVariable todolistId: Long): ResponseEntity<Unit> {
+        toDoListService.removeCommentsList(todolistId)
+        return ResponseEntity
+            .status(HttpStatus.NO_CONTENT)
+            .build()
     }
 
     //댓글 삭제

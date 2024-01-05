@@ -59,6 +59,14 @@ class ToDoListServiceImpl(
     }
 
     @Transactional
+    override fun removeCommentsList(todolistId: Long) {
+        val todolist = toDoListRepository.findByIdOrNull(todolistId) ?: throw ModelNotFoundException("todolist", todolistId)
+
+        todolist.comment.clear()
+        toDoListRepository.save(todolist)
+    }
+
+    @Transactional
     override fun removeComments(todolistId: Long, commentsId: Long) {
         val todolist = toDoListRepository.findByIdOrNull(todolistId) ?: throw ModelNotFoundException("ToDoList", todolistId)
         val comment = commentsRepository.findByIdOrNull(commentsId) ?: throw ModelNotFoundException("Comments", commentsId)

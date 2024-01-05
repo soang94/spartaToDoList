@@ -14,4 +14,6 @@ interface ToDoListService {
     fun updateComments(todolistId: Long, commentsId: Long, request: UpdateCommentsRequest): CommentsResponse
 
     fun removeComments(todolistId: Long, commentsId: Long)
+
+    fun removeCommentsList(todolistId: Long)
 }
